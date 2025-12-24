@@ -1,0 +1,21 @@
+Additions needed:
+
+-When creating a new game, need the option for teams - dropdown for "Players per team"
+ -> Somehow need to be able to change who's on each team. Should be better than being forced into whatever order the players are selected in.
+
+-Might need to get rid of the header when in a game. Currently need to scroll to see all point options.
+
+-Miss button and exit game button should not look similar and be next to each other.
+
+-"Bullseye" is cutoff on the button
+
+-Should have markins within each scoring box, thinking roman numerals
+
+-Need the ability to resume games if you've quit out of them.
+
+-Having profile pictures per person would be sick. Not a big deal if not an option
+
+-History page should have the ability to select a player and see their stats only instead of scrolling through stats for all players.
+
+-Need an "undo" button when in a game.
+

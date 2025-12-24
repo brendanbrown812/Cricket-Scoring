@@ -1,0 +1,756 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header.hidden {
+    display: none;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+}
+
+nav button {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    background: transparent;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #666;
+}
+
+nav button:hover {
+    background: #e9ecef;
+}
+
+nav button.active {
+    background: white;
+    color: #667eea;
+    border-bottom: 3px solid #667eea;
+}
+
+/* Content area */
+.content {
+    padding: 30px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-warning {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #138496;
+}
+
+/* Forms */
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Player Management */
+.player-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.player-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.player-card:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.player-card h3 {
+    margin-bottom: 10px;
+    color: #667eea;
+}
+
+.player-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.player-card .actions button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+
+/* New Game Setup */
+.player-selection {
+    margin-top: 20px;
+}
+
+.player-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.player-checkbox:hover {
+    background: #e9ecef;
+}
+
+.player-checkbox.selected {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.player-checkbox input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.player-checkbox span {
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+}
+
+/* Game Screen */
+.game-header {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.dart-counter-display {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dart-counter-display span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.scoreboard {
+    margin-top: 20px;
+}
+
+.score-grid-header {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.player-column {
+    background: white;
+    border: 3px solid #e9ecef;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.player-column.active {
+    border-color: #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.player-column h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.points-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #28a745;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.points-display span {
+    color: #28a745;
+    font-size: 1.2em;
+}
+
+.score-grid-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.target-row {
+    display: grid;
+    gap: 10px;
+    align-items: center;
+}
+
+.target-label {
+    background: #667eea;
+    color: white;
+    padding: 20px 10px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    word-break: break-word;
+}
+
+.target-cell {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding: 5px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+}
+
+.hit-btn {
+    aspect-ratio: 1;
+    min-height: 50px;
+    border: 2px solid #ccc;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    font-weight: bold;
+    color: #999;
+}
+
+.hit-btn::after {
+    content: attr(data-mark-label);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+}
+
+.hit-btn:hover {
+    transform: scale(1.05);
+    border-color: #667eea;
+}
+
+.hit-btn:active {
+    transform: scale(0.95);
+}
+
+.hit-btn.hit {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.game-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.game-controls #undo-btn {
+    flex: 1;
+    background: #17a2b8;
+    color: white;
+    font-size: 1.2em;
+    padding: 20px;
+}
+
+.game-controls #undo-btn:hover:not(:disabled) {
+    background: #138496;
+}
+
+.game-controls #undo-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.game-controls #miss-btn {
+    flex: 2;
+    background: #ffc107;
+    color: #333;
+    font-size: 1.3em;
+    padding: 20px;
+}
+
+.game-controls #miss-btn:hover {
+    background: #e0a800;
+}
+
+.game-controls #end-game-btn {
+    flex: 1;
+}
+
+/* Match History */
+.match-list {
+    margin-top: 20px;
+}
+
+.match-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.match-card:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.match-card-content {
+    flex: 1;
+    cursor: pointer;
+}
+
+.match-card .match-date {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.match-card .match-players {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.match-card .match-winner {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.btn-delete-match {
+    padding: 10px 20px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-delete-match:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-delete-match:active {
+    transform: scale(0.95);
+}
+
+.btn-resume-match {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-resume-match:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.btn-resume-match:active {
+    transform: scale(0.95);
+}
+
+/* Statistics */
+.stats-container {
+    margin-top: 20px;
+}
+
+.stats-filter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stats-filter label {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.player-filter-dropdown {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.player-filter-dropdown:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.stat-card h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+.stat-item .stat-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stat-item .stat-label {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.hit-breakdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.hit-item {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+.hit-item .hit-target {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.hit-item .hit-count {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Settings/Data Management */
+.data-management {
+    margin-top: 20px;
+}
+
+.data-section {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.data-section h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.data-section p {
+    color: #6c757d;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.data-section .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    flex: 1;
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Multiplier Modal Buttons */
+.multiplier-buttons {
+    display: grid;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.btn-multiplier {
+    padding: 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.btn-single {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-single:hover {
+    background: #138496;
+}
+
+.btn-double {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-double:hover {
+    background: #e0a800;
+}
+
+.btn-triple {
+    background: #fd7e14;
+    color: white;
+}
+
+.btn-triple:hover {
+    background: #e96b0c;
+}
+
+/* Responsive design for smaller tablets/phones */
+@media (max-width: 768px) {
+    .player-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .hit-btn {
+        min-height: 40px;
+    }
+    
+    .target-label {
+        padding: 15px;
+        font-size: 1.2em;
+    }
+}

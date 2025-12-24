@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Cricket Darts Scorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Cricket Darts</h1>
+            <p>Track your games and statistics</p>
+        </header>
+        
+        <nav>
+            <button data-screen="players" class="active">Players</button>
+            <button data-screen="new-game">New Game</button>
+            <button data-screen="game" style="display: none;">Game</button>
+            <button data-screen="history">History</button>
+            <button data-screen="stats">Statistics</button>
+            <button data-screen="data">Data</button>
+        </nav>
+        
+        <div class="content">
+            <!-- Players Screen -->
+            <div id="players-screen" class="screen active">
+                <h2>Manage Players</h2>
+                <button id="add-player-btn" class="btn btn-primary">Add New Player</button>
+                <div id="player-list" class="player-list"></div>
+            </div>
+            
+            <!-- New Game Screen -->
+            <div id="new-game-screen" class="screen">
+                <h2>Start New Game</h2>
+                <p>Select at least 2 players to begin:</p>
+                <div id="player-selection" class="player-selection"></div>
+                <button id="start-game-btn" class="btn btn-primary mt-20">Start Game</button>
+            </div>
+            
+            <!-- Game Screen -->
+            <div id="game-screen" class="screen">
+                <div class="game-header">
+                    <h2>Cricket Game in Progress</h2>
+                    <p>Close all numbers (20, 19, 18, 17, 16, 15, Bull) and have the most points to win!</p>
+                    <div class="dart-counter-display">
+                        <span id="dart-counter">Dart 1 of 3</span>
+                    </div>
+                </div>
+                
+                <div id="scoreboard" class="scoreboard"></div>
+                
+                <div class="game-controls">
+                    <button id="undo-btn" class="btn btn-warning" onclick="App.undoLastAction()" disabled>↶ Undo</button>
+                    <button id="miss-btn" class="btn btn-secondary" onclick="App.advanceDart()">Miss</button>
+                    <button id="end-game-btn" class="btn btn-danger" onclick="App.endGame()">End Game</button>
+                </div>
+            </div>
+            
+            <!-- Match History Screen -->
+            <div id="history-screen" class="screen">
+                <h2>Match History</h2>
+                <div id="match-list" class="match-list"></div>
+            </div>
+            
+            <!-- Statistics Screen -->
+            <div id="stats-screen" class="screen">
+                <h2>Player Statistics</h2>
+                <div class="stats-filter">
+                    <label for="stats-player-filter">Filter by player:</label>
+                    <select id="stats-player-filter" class="player-filter-dropdown">
+                        <option value="all">All Players</option>
+                    </select>
+                </div>
+                <div id="stats-container" class="stats-container"></div>
+            </div>
+            
+            <!-- Data Management Screen -->
+            <div id="data-screen" class="screen">
+                <h2>Data Management</h2>
+                <div class="data-management">
+                    <div class="data-section">
+                        <h3>Export Data</h3>
+                        <p>Download a backup of all your players, matches, and statistics as a JSON file. You can use this to restore your data later or transfer it to another device.</p>
+                        <button id="export-data-btn" class="btn btn-primary">Export Data</button>
+                    </div>
+                    
+                    <div class="data-section">
+                        <h3>Import Data</h3>
+                        <p>Restore data from a previously exported backup file. This will replace all current data.</p>
+                        <button id="import-data-btn" class="btn btn-secondary">Import Data</button>
+                        <input type="file" id="import-file-input" accept=".json" style="display: none;">
+                    </div>
+                    
+                    <div class="data-section">
+                        <h3>Clear All Data</h3>
+                        <p>Permanently delete all players, matches, and statistics. This cannot be undone!</p>
+                        <button id="clear-data-btn" class="btn btn-danger">Clear All Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Player Modal -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="player-modal-title">Add New Player</h2>
+            <input type="text" id="player-name-input" placeholder="Enter player name">
+            <div class="modal-actions">
+                <button id="save-player-btn" class="btn btn-primary">Save</button>
+                <button onclick="App.closeModal('player-modal')" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Match Detail Modal -->
+    <div id="match-detail-modal" class="modal">
+        <div class="modal-content">
+            <div id="match-detail-content"></div>
+            <div class="modal-actions">
+                <button onclick="App.closeModal('match-detail-modal')" class="btn btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Multiplier Modal -->
+    <div id="multiplier-modal" class="modal">
+        <div class="modal-content">
+            <h2>Select Hit Type</h2>
+            <p>Target: <strong id="multiplier-target"></strong></p>
+            <div class="multiplier-buttons">
+                <button class="btn btn-multiplier btn-single" onclick="App.recordHit(App.currentTarget, 1)">Single (1 mark)</button>
+                <button class="btn btn-multiplier btn-double" onclick="App.recordHit(App.currentTarget, 2)">Double (2 marks)</button>
+                <button class="btn btn-multiplier btn-triple" onclick="App.recordHit(App.currentTarget, 3)">Triple (3 marks)</button>
+            </div>
+            <div class="modal-actions">
+                <button onclick="App.closeModal('multiplier-modal')" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
